@@ -26,6 +26,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <EditText
         android:id="@+id/password"
         android:layout_width="0dp"
@@ -43,6 +44,46 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/username" />
 
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="127dp"
+        android:layout_height="109dp"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="155dp"
+        android:layout_marginLeft="155dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="159dp"
+        android:layout_marginRight="159dp"
+        android:layout_marginBottom="13dp"
+        app:layout_constraintBottom_toTopOf="@+id/login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/password">
+
+        <RadioButton
+            android:id="@+id/radio_one"
+            android:layout_width="119dp"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/prompt_supplier"
+            tools:layout_editor_absoluteX="163dp"
+            tools:layout_editor_absoluteY="245dp" />
+
+        <RadioButton
+            android:id="@+id/radio_three"
+            android:layout_width="115dp"
+            android:layout_height="wrap_content"
+            android:text="@string/prompt_customer"
+            tools:layout_editor_absoluteX="160dp"
+            tools:layout_editor_absoluteY="326dp" />
+
+        <RadioButton
+            android:id="@+id/radio_two"
+            android:layout_width="122dp"
+            android:layout_height="wrap_content"
+            android:text="@string/prompt_manager" />
+    </RadioGroup>
+
     <Button
         android:id="@+id/login"
         android:layout_width="wrap_content"
@@ -58,7 +99,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password"
-        app:layout_constraintVertical_bias="0.2" />
+        app:layout_constraintVertical_bias="0.435" />
 
     <ProgressBar
         android:id="@+id/loading"
@@ -75,4 +116,6 @@
         app:layout_constraintStart_toStartOf="@+id/password"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.3" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

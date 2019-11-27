@@ -2,6 +2,10 @@
     <string name="app_name">EasyManage</string>
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
+    <string name="prompt_customer">Customer</string>
+    <string name="prompt_supplier">Supplier</string>
+    <string name="prompt_manager">Manager</string>
+    <string name="prompt_kind">Kindl</string>
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Sign in or register</string>
     <string name="action_sign_in_short">Sign in</string>
