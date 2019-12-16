@@ -60,7 +60,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateUI(FirebaseUser user) {
-
+        Intent intent = new Intent(getApplicationContext(),HomePage.class);
+        startActivity(intent);
     }
 
     private String getEmail() {
