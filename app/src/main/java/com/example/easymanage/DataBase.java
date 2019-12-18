@@ -1,14 +1,8 @@
 package com.example.easymanage;
 
-import android.os.Build;
 import android.util.Log;
-
-import androidx.annotation.RequiresApi;
-
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,6 +15,10 @@ public class DataBase {
     private DataBase() {
 
     }
+
+    // --------------------------------- Inserting Data --------------------------------------------
+
+
     public static void insertUser(String UID , String name , String Email ,Type type )
     {
 
@@ -51,4 +49,13 @@ public class DataBase {
         Log.d(TAGS.INFO,"Inserting a new order to database  / Values : UID " + UID + "userID : " + userID  +  " supploerID : " + supplierID + " productID : "  + productID   );
     }
 
+
+    // --------------------------------- Getting Data --------------------------------------------
+    public static Type getUserType(String UID )
+    {
+        DatabaseReference myRef = database.getReference("users");
+        String type = myRef.Sna;
+
+        return Type.valueOf("Supplier");
+    }
 }
