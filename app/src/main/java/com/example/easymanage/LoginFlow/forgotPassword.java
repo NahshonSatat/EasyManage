@@ -1,4 +1,4 @@
-package com.example.easymanage;
+package com.example.easymanage.LoginFlow;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,9 +11,10 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.easymanage.R;
+import com.example.easymanage.TAGS;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class forgotPassword extends AppCompatActivity {
 
@@ -33,11 +34,9 @@ public class forgotPassword extends AppCompatActivity {
            Log.d(TAGS.INFO,getEmail());
            Task<Void> task  = mAuth.sendPasswordResetEmail(getEmail());
            boolean Succeed = task.isSuccessful();
-           if(Succeed)
-           {
-               Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-               startActivity(intent);
-           }
+           Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+           startActivity(intent);
+
        }
        else Toast.makeText(getApplicationContext(), "invalid Email address", Toast.LENGTH_SHORT).show();
 
