@@ -47,6 +47,7 @@ public class DataBase {
         for (Map.Entry<String, String> entry : info.entrySet()) {
            myRef.child(entry.getKey()).setValue(entry.getValue());
         }
+        Log.d((TAGS.INFO,"Inserting")
         Log.d(TAGS.INFO,"Inserting a new order to database  / Values : UID " + UID + "userID : " + userID  +  " supploerID : " + supplierID + " productID : "  + productID   );
     }
 
