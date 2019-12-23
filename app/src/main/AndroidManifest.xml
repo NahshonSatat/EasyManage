@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.FullScreen">
+        <activity android:name=".Customer.HomePageCustomer"></activity>
         <activity android:name=".Supplier.HomePage" />
         <activity android:name=".LoginFlow.forgotPassword" />
         <activity android:name=".LoginFlow.Register" />

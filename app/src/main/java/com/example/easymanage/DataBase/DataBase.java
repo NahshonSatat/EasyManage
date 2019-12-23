@@ -32,12 +32,13 @@ public class DataBase {
 
     public static void insertOrder(Order order)
     {
+
         DatabaseReference myRef = database.getReference("orders");
         myRef.child(order.getUID()).setValue(order);
         myRef = database.getReference("supplier_orders");
-        myRef.child(order.getSupplierID()).setValue(order);
+        myRef.child(order.getSupplierID()).child(order.getUID()).setValue(order);
         myRef = database.getReference("customer_orders");
-        myRef.child(order.getUserID()).setValue(order);
+        myRef.child(order.getUserID()).child(order.getUID()).setValue(order);
 
         Log.d(TAGS.INFO,"Inserting a new order to database  / Values : UID " +
                 order.getUID() + "userID : " + order.getUserID()
@@ -49,7 +50,7 @@ public class DataBase {
         DatabaseReference myRef = database.getReference("products");
         myRef.child(product.getUID()).setValue(product);
         myRef = database.getReference("supplier_products");
-        myRef.child(product.getSupplierID()).setValue(product);
+        myRef.child(product.getSupplierID()).child(product.getUID()).setValue(product);
 
         Log.d(TAGS.INFO,"Inserting a new product to database  / Values : UID "
                 + product.getUID() +   " supploerID : "
