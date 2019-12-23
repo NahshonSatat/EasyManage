@@ -5,49 +5,48 @@ import java.util.HashMap;
 public class Order {
 
 
-    private String UID ;
+    private String uid ;
     private String userID ;
     private String supplierID ;
     private String productID ;
     private HashMap<String,String> info;
 
+
+
+    public Order(){}
+
+    public Order(String UID,String userID , String supplierID ,String productID,HashMap<String,String> info )
+    {
+        this.uid = UID ;
+        this.userID = userID;
+        this.supplierID = supplierID ;
+        this.productID = productID ;
+        this.info = info ;
+    }
+
     public HashMap<String, String> getInfo() {
         return info;
     }
 
-    public void setInfo(HashMap<String, String> info) {
-        this.info = info;
-    }
+
 
     public String getProductID() {
         return productID;
     }
 
-    public void setProductID(String productID) {
-        this.productID = productID;
-    }
 
     public String getSupplierID() {
         return supplierID;
     }
 
-    public void setSupplierID(String supplierID) {
-        this.supplierID = supplierID;
-    }
 
     public String getUserID() {
         return userID;
     }
 
-    public void setUserID(String userID) {
-        this.userID = userID;
-    }
 
     public String getUID() {
-        return UID;
+        return uid;
     }
 
-    public void setUID(String UID) {
-        this.UID = UID;
-    }
 }

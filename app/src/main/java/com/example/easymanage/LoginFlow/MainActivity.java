@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.easymanage.DataBase.DataBase;
+import com.example.easymanage.Order;
 import com.example.easymanage.R;
 import com.example.easymanage.Supplier.HomePage;
 import com.example.easymanage.TAGS;
@@ -22,12 +23,14 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.HashMap;
+
 
 public class MainActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private String password = "", email = "";
-
+    public static  FirebaseUser user  = null ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,8 +67,24 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateUI(FirebaseUser user) {
-        Type type = DataBase.getUserType(user.getUid());
-        Log.d(TAGS.INFO,"" + type);
+
+        HashMap<String,String> info = new HashMap<>();
+        info.put("from","israel");
+        info.put("to","italy");
+        info.put("TEST","TEST");
+        info.put("description","MacBook Pro screen protector");
+
+
+        DataBase.insertOrder(new Order("123","123",user.getUid(),"1234",info));
+        DataBase.insertOrder(new Order("1213","1234",user.getUid(),"1234",info));
+        DataBase.insertOrder(new Order("1223","11123",user.getUid(),"12334",info));
+
+
+        Log.d(TAGS.INFO,"" + "Supplier");
+
+
+
+        this.user = user;
         Intent intent = new Intent(getApplicationContext(), HomePage.class);
         startActivity(intent);
     }

@@ -115,6 +115,7 @@
 
                     <EditText
                         android:id="@+id/EmailLogin"
+                        android:text="test@gmail.com"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
@@ -132,6 +133,7 @@
 
                     <EditText
                         android:id="@+id/PasswordLogin"
+                        android:text="12345678"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
