@@ -17,6 +17,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.easymanage.LoginFlow.MainActivity;
 import com.example.easymanage.Order;
+import com.example.easymanage.Product;
 import com.example.easymanage.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -92,16 +93,29 @@ public class OrderFragment extends Fragment {
             View listViewItem = layoutInflater.inflate(R.layout.order_list_item,parent,false);
 
             TextView UID =(TextView) listViewItem.findViewById(R.id.order_uid);
-            TextView ProductID =(TextView) listViewItem.findViewById(R.id.order_product_name);
+            final TextView ProductID =(TextView) listViewItem.findViewById(R.id.order_product_name);
             ImageView ProductImage =(ImageView) listViewItem.findViewById(R.id.order_product_image);
 
 
-            Order order = OrdersList.get(position);
+            final Order order = OrdersList.get(position);
 
             UID.setText(order.getUID());
-            ProductID.setText(order.getProductID());
-            ProductImage.setImageResource(R.drawable.chair);
 
+
+            ProductImage.setImageResource(R.drawable.chair);
+            DataRefOrders = FirebaseDatabase.getInstance().getReference("products").child(order.getProductID());
+            DataRefOrders.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    Product product = dataSnapshot.getValue(Product.class);
+                    ProductID.setText( product.getProductName());
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
             return listViewItem;
         }
 

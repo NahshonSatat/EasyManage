@@ -6,38 +6,32 @@ public class Product {
 
     private String UID ;
     private String supplierID ;
-    private String productID ;
+    private String productName ;
     private HashMap<String,String> info;
 
+    public Product(){}
+    public Product(String UID ,String supplierID , String productName , HashMap<String,String> info)
+    {
+        this.UID = UID ;
+        this.supplierID = supplierID ;
+        this.productName = productName ;
+        this.info = info ;
+    }
     public String getUID() {
         return UID;
     }
 
-    public void setUID(String UID) {
-        this.UID = UID;
-    }
 
     public String getSupplierID() {
         return supplierID;
-    }
-
-    public void setSupplierID(String supplierID) {
-        this.supplierID = supplierID;
-    }
-
-    public String getProductID() {
-        return productID;
-    }
-
-    public void setProductID(String productID) {
-        this.productID = productID;
     }
 
     public HashMap<String, String> getInfo() {
         return info;
     }
 
-    public void setInfo(HashMap<String, String> info) {
-        this.info = info;
-    }
+
+    public String getProductName() { return productName; }
+
+
 }

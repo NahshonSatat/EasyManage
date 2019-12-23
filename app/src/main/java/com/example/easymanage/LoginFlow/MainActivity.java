@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.example.easymanage.DataBase.DataBase;
 import com.example.easymanage.Order;
+import com.example.easymanage.Product;
 import com.example.easymanage.R;
 import com.example.easymanage.Supplier.HomePage;
 import com.example.easymanage.TAGS;
@@ -74,10 +75,9 @@ public class MainActivity extends AppCompatActivity {
         info.put("TEST","TEST");
         info.put("description","MacBook Pro screen protector");
 
-
-        DataBase.insertOrder(new Order("123","123",user.getUid(),"1234",info));
-        DataBase.insertOrder(new Order("1213","1234",user.getUid(),"1234",info));
-        DataBase.insertOrder(new Order("1223","11123",user.getUid(),"12334",info));
+        DataBase.insertOrder(new Order("DanielAbergel","UrielAbergel",user.getUid(),"1234",info));
+//          public Product(String UID ,String supplierID , String productName , HashMap<String,String> info)
+        DataBase.insertProduct(new Product("1234",user.getUid(),"DanielAbergel" ,info));
 
 
         Log.d(TAGS.INFO,"" + "Supplier");

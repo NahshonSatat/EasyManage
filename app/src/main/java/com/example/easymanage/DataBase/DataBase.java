@@ -54,8 +54,8 @@ public class DataBase {
 
         Log.d(TAGS.INFO,"Inserting a new product to database  / Values : UID "
                 + product.getUID() +   " supploerID : "
-                + product.getSupplierID() + " productID : "
-                + product.getProductID()   );
+                + product.getSupplierID() + " productName : "
+                + product.getProductName()   );
 
     }
 
