@@ -38,7 +38,7 @@ public class OrderFragment extends Fragment {
         listViewOrders = (ListView) view.findViewById(R.id.OrdersListView);
         OrderList adapter = new OrderList(getActivity(),orders);
         listViewOrders.setAdapter(adapter);
-        DataRefOrders = FirebaseDatabase.getInstance().getReference("supplier_orders");
+        DataRefOrders = FirebaseDatabase.getInstance().getReference("customer_orders");
         return view ;
 
     }
