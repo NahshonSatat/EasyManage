@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.easymanage.LoginFlow.MainActivity;
 import com.example.easymanage.Order;
 import com.example.easymanage.Product;
 import com.example.easymanage.R;
@@ -28,35 +29,34 @@ import java.util.List;
 
 public class ProductFragment extends Fragment {
     ListView listViewProducts;
-    DatabaseReference DataRefProducts;
-    List<Product> products  = new ArrayList<>();
+    DatabaseReference DataRefOrders;
+    List<Product> products = new ArrayList<>();
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_products,container,false);
-        listViewProducts = (ListView) view.findViewById(R.id.ProductListView);
-        ProductFragment.ProductList adapter = new ProductFragment.ProductList(getActivity(),products);
+        View view = inflater.inflate(R.layout.fragment_products, container, false);
+        listViewProducts = (ListView) view.findViewById(R.id.OrdersListViewProduct);
+       ProductList adapter = new ProductList(getActivity(), products);
         listViewProducts.setAdapter(adapter);
-        DataRefProducts = FirebaseDatabase.getInstance().getReference("all_product");
-        return view ;
+        DataRefOrders = FirebaseDatabase.getInstance().getReference("products");
+        return view;
 
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        DataRefProducts.addValueEventListener(new ValueEventListener() {
+        DataRefOrders.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 products.clear();
 
-                for(DataSnapshot productSnapShot : dataSnapshot.getChildren())
-                {
-                    Product product = productSnapShot.getValue(Product.class);
+                for (DataSnapshot orderSnapShot : dataSnapshot.getChildren()) {
+                    Product product = orderSnapShot.getValue(Product.class);
                     products.add(product);
                 }
-                ProductFragment.ProductList adapter = new ProductFragment.ProductList(getActivity(),products);
+              ProductList adapter = new ProductList(getActivity(), products);
                 listViewProducts.setAdapter(adapter);
             }
 
@@ -71,14 +71,13 @@ public class ProductFragment extends Fragment {
 
     public class ProductList extends ArrayAdapter<Product> {
 
-        private Context context  ;
-        private List<Product> ProductList ;
+        private Context context;
+        private List<Product> ProductsList;
 
-        public ProductList(Context context , List<Product> ProductList)
-        {
-            super(context, R.layout.product_list_item,ProductList);
-            this.context = context ;
-            this.ProductList = ProductList ;
+        public ProductList(Context context, List<Product> ProductsList) {
+            super(context, R.layout.order_list_item, ProductsList);
+            this.context = context;
+            this.ProductsList = ProductsList;
 
         }
 
@@ -86,18 +85,18 @@ public class ProductFragment extends Fragment {
         @NonNull
         @Override
         public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-            LayoutInflater layoutInflater = (LayoutInflater)getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View listViewItem = layoutInflater.inflate(R.layout.product_list_item,parent,false);
+            LayoutInflater layoutInflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            View listViewItem = layoutInflater.inflate(R.layout.order_list_item, parent, false);
 
-            TextView UID =(TextView) listViewItem.findViewById(R.id.product_uid);
-            TextView ProductID =(TextView) listViewItem.findViewById(R.id.product_product_name);
-            ImageView ProductImage =(ImageView) listViewItem.findViewById(R.id.product_product_image);
+            TextView Decripction = (TextView) listViewItem.findViewById(R.id.order_uid);
+            final TextView ProductName = (TextView) listViewItem.findViewById(R.id.order_product_name);
+            ImageView ProductImage = (ImageView) listViewItem.findViewById(R.id.order_product_image);
 
 
-            Product product = ProductList.get(position);
+            Product product = ProductsList.get(position);
 
-            UID.setText(product.getUID());
-            ProductID.setText(product.getProductID());
+            Decripction.setText(product.getDescription());
+            ProductName.setText(product.getProductName());
             ProductImage.setImageResource(R.drawable.chair);
 
             return listViewItem;

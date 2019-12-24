@@ -8,7 +8,7 @@ public class User {
     private String Name ;
     private String LastName;
 
-
+    public User(){}
     public User(String Email , String UID , String Type, String Name , String Lastname)
     {
        setEmail(Email);

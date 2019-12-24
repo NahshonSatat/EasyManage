@@ -7,15 +7,17 @@ public class Product {
     private String UID ;
     private String supplierID ;
     private String productName ;
+    private String description ;
     private HashMap<String,String> info;
 
     public Product(){}
-    public Product(String UID ,String supplierID , String productName , HashMap<String,String> info)
+    public Product(String UID ,String supplierID , String productName, String description , HashMap<String,String> info)
     {
         this.UID = UID ;
         this.supplierID = supplierID ;
         this.productName = productName ;
         this.info = info ;
+        this.description = description ;
     }
     public String getUID() {
         return UID;
@@ -34,4 +36,7 @@ public class Product {
     public String getProductName() { return productName; }
 
 
+    public String getDescription() {
+        return description;
+    }
 }

@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.easymanage.Customer.HomePageCustomer;
 import com.example.easymanage.DataBase.DataBase;
 import com.example.easymanage.Order;
 import com.example.easymanage.Product;
@@ -18,20 +19,28 @@ import com.example.easymanage.R;
 import com.example.easymanage.Supplier.HomePage;
 import com.example.easymanage.TAGS;
 import com.example.easymanage.Type;
+import com.example.easymanage.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
+import java.util.UUID;
 
 
 public class MainActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
-    private String password = "", email = "";
-    public static  FirebaseUser user  = null ;
+    private String password = "", email = "" ,type = "";
+    private DatabaseReference DataRefOrders ;
+    public static  FirebaseUser user  = FirebaseAuth.getInstance().getCurrentUser() ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,25 +77,30 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateUI(FirebaseUser user) {
-
-        HashMap<String,String> info = new HashMap<>();
-        info.put("from","israel");
-        info.put("to","italy");
-        info.put("TEST","TEST");
-        info.put("description","MacBook Pro screen protector");
-
-        DataBase.insertOrder(new Order("DanielAbergel","UrielAbergel",user.getUid(),"1234",info));
-//          public Product(String UID ,String supplierID , String productName , HashMap<String,String> info)
-        DataBase.insertProduct(new Product("1234",user.getUid(),"DanielAbergel" ,info));
-
-
-        Log.d(TAGS.INFO,"" + "Supplier");
-
-
-
         this.user = user;
-        Intent intent = new Intent(getApplicationContext(), HomePage.class);
-        startActivity(intent);
+        
+        DataRefOrders = FirebaseDatabase.getInstance().getReference("users").child(user.getUid());
+        DataRefOrders.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                User user = dataSnapshot.getValue(User.class);
+                type = user.getType();
+                if(type.equals("Supplier"))
+                {
+                    Intent intent = new Intent(getApplicationContext(), HomePage.class);
+                    startActivity(intent);
+                }else if(type.equals("Customer")) {
+                    Intent intent = new Intent(getApplicationContext(), HomePageCustomer.class);
+                    startActivity(intent);
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
     }
 
     private String getEmail() {

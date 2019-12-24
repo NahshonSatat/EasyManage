@@ -41,7 +41,7 @@ public class OrderFragment extends Fragment {
         listViewOrders = (ListView) view.findViewById(R.id.OrdersListView);
         OrderList adapter = new OrderList(getActivity(),orders);
         listViewOrders.setAdapter(adapter);
-        DataRefOrders = FirebaseDatabase.getInstance().getReference("supplier_orders");
+        DataRefOrders = FirebaseDatabase.getInstance().getReference("supplier_orders").child(MainActivity.user.getUid());
         return view ;
 
     }
@@ -97,7 +97,7 @@ public class OrderFragment extends Fragment {
             ImageView ProductImage =(ImageView) listViewItem.findViewById(R.id.order_product_image);
 
 
-            final Order order = OrdersList.get(position);
+            Order order = OrdersList.get(position);
 
             UID.setText(order.getUID());
 

@@ -12,9 +12,9 @@ import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
 import android.view.MenuItem;
-import com.example.easymanage.Supplier.HomeFragemnt;
-import com.example.easymanage.Supplier.OrderFragment;
-import com.example.easymanage.Supplier.ProductFragment;
+import com.example.easymanage.Customer.HomeFragemnt;
+import com.example.easymanage.Customer.OrderFragment;
+import com.example.easymanage.Customer.ProductFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class HomePageCustomer extends AppCompatActivity {

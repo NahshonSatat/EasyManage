@@ -58,8 +58,4 @@ public class DataBase {
                 + product.getProductName()   );
 
     }
-
-
-
-    // --------------------------------- Getting Data --------------------------------------------
 }

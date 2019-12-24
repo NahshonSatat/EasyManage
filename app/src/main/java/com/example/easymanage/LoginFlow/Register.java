@@ -24,7 +24,8 @@ import com.google.firebase.auth.FirebaseUser;
 public class Register extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
-    private String email = "" ,password = "";
+    private String email = "" ,password = "" , name = "" , lastName = "";
+    Type type  = Type.Supplier;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +53,7 @@ public class Register extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAGS.INFO, "createUserWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            DataBase.insertUser(new User(user.getEmail(),user.getUid(),"Supplier","TEST","TEST"));
+                            DataBase.insertUser(new User(user.getEmail(),user.getUid(),type.toString(),getName(),getLastName()));
                             Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                             startActivity(intent);
 
@@ -68,6 +69,14 @@ public class Register extends AppCompatActivity {
     public String getEmail() {
         return email = ((EditText) (findViewById(R.id.emailForgotPassword))).getText().toString();
     }
+    public String getName() {
+        name = ((EditText) (findViewById(R.id.RegisterName))).getText().toString();
+        return name ;
+    }
+    public String getLastName(){
+        lastName = ((EditText) (findViewById(R.id.RegisterLastName))).getText().toString();
+        return lastName;
+    }
 
     public String getPassword() {
         return password = ((EditText) (findViewById(R.id.passwordRegister))).getText().toString();
@@ -75,6 +84,16 @@ public class Register extends AppCompatActivity {
     public String getPasswordRtype() {
         return password = ((EditText) (findViewById(R.id.passwordRegisterR))).getText().toString();
     }
+    public void supplierButton(View view){
+        type = Type.Supplier ;
+    }
+    public void customerButton(View view){
+        type = Type.Customer ;
+    }
+    public void managerButton(View view){
+        type = Type.Manager ;
+    }
+
 
 
 

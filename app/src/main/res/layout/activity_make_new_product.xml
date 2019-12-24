@@ -7,13 +7,12 @@
     tools:context=".LoginFlow.Register">
 
     <TextView
-        android:id="@+id/tvSignUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"
         android:elevation="10dp"
-        android:text="Sign up"
+        android:text="Product"
         android:textColor="#25659C"
         android:textSize="35sp"
         android:textStyle="bold"
@@ -71,13 +70,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
-                        android:text="Email"
+                        android:text="Product name"
                         android:textColor="@color/colorPurple"
                         android:textSize="14sp"
                         android:textStyle="bold" />
 
                     <EditText
-                        android:id="@+id/emailForgotPassword"
+                        android:id="@+id/productName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
@@ -88,13 +87,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
-                        android:text="Name"
+                        android:text="Product Description"
                         android:textColor="@color/colorPurple"
                         android:textSize="14sp"
                         android:textStyle="bold" />
 
                     <EditText
-                        android:id="@+id/RegisterName"
+                        android:id="@+id/ProductDescription"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
@@ -104,13 +103,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
-                        android:text="Last Name"
+                        android:text="from"
                         android:textColor="@color/colorPurple"
                         android:textSize="14sp"
                         android:textStyle="bold" />
 
                     <EditText
-                        android:id="@+id/RegisterLastName"
+                        android:id="@+id/fromProduct"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
@@ -120,71 +119,35 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
-                        android:text="Password"
+                        android:text="to"
                         android:textColor="@color/colorPurple"
                         android:textSize="14sp"
                         android:textStyle="bold" />
 
                     <EditText
-                        android:id="@+id/passwordRegister"
+                        android:id="@+id/toProduct"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
-                        android:inputType="textPassword" />
+                        android:inputType="text" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
-                        android:text="Retype Password"
+                        android:text="Price"
                         android:textColor="@color/colorPurple"
                         android:textSize="14sp"
                         android:textStyle="bold" />
 
                     <EditText
-                        android:id="@+id/passwordRegisterR"
+                        android:id="@+id/priceProduct"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
-                        android:inputType="textPassword" />
-
-                    <RadioGroup
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-
-                        android:checkedButton="@id/radio_pirates"
-                        android:orientation="horizontal">
-
-                        <RadioButton
-                            android:id="@+id/radio_pirates"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="60dp"
-                            android:onClick="supplierButton"
-                            android:text="Supplier"
-                            android:textSize="13dp"
-                            android:textColor="@color/colorBlue"/>
-
-                        <RadioButton
-                            android:id="@+id/radio_ninjas"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:onClick="customerButton"
-                            android:text="Customer"
-                            android:textSize="13dp"
-                            android:textColor="@color/colorBlue"/> />
-
-                        <RadioButton
-                            android:id="@+id/radio_daniel"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:onClick="managerButton"
-                            android:text="Manager"
-                            android:textSize="13dp"
-                            android:textColor="@color/colorBlue"/> />
-                    </RadioGroup>
+                        android:inputType="text" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -200,11 +163,12 @@
                 android:elevation="10dp">
 
                 <Button
+                    android:id="@+id/SendProduct"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/bg_ui"
-                    android:onClick="registerUser"
-                    android:text="Sign up"
+                    android:onClick="makeNewOrder"
+                    android:text="Send"
                     android:textAllCaps="false"
                     android:textColor="@color/colorWhite" />
             </RelativeLayout>
