@@ -1,8 +1,9 @@
 package com.example.easymanage;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
-public class Order {
+public class Order implements Serializable {
 
 
     private String uid ;

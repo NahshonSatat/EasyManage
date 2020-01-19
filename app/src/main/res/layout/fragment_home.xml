@@ -1,21 +1,86 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
 
-    >
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context=".Customer.HomePageCustomer">
 
-    <Button
-        android:id="@+id/makeNewProductBtn"
-        android:layout_width="200dp"
+
+    <TextView
+        android:id="@+id/tvDesc"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="110dp"
-        android:layout_marginTop="300dp"
-        android:background="@drawable/bg_ui"
-        android:onClick="makeNewOrder"
-        android:text="Make New Product"
-        android:textAllCaps="false"
-        android:textColor="@color/colorWhite" />
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="66dp"
+        android:elevation="5dp"
+        android:text="If it wasn't simple, it just wouldn't be."
+        android:textColor="#20678B"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toTopOf="@+id/tvProduct"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/tvProduct"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvDesc"
+        android:layout_alignLeft="@+id/tvDesc"
+        android:layout_marginEnd="106dp"
+        android:elevation="5dp"
+        android:text="Welcome Back"
+        android:textColor="@color/colorBlue"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:transitionName="tvLogin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvDesc" />
+
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="119dp"
+        android:layout_height="107dp"
+        android:layout_marginTop="143dp"
+        android:layout_marginEnd="52dp"
+        android:src="@drawable/email"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvProduct" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="126dp"
+        android:layout_height="101dp"
+        android:layout_marginTop="59dp"
+        android:layout_marginEnd="44dp"
+        android:layout_marginBottom="179dp"
+        android:src="@drawable/setting"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+
+    <ImageView
+        android:id="@+id/makeNewProductbtn"
+        android:layout_width="111dp"
+        android:layout_height="102dp"
+        android:layout_marginStart="65dp"
+        android:layout_marginTop="143dp"
+        android:src="@drawable/add"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvProduct" />
+
+    <ImageView
+        android:id="@+id/logOutBtnHomeSupplier"
+        android:layout_width="106dp"
+        android:layout_height="97dp"
+        android:layout_marginStart="68dp"
+        android:layout_marginTop="71dp"
+        android:layout_marginBottom="176dp"
+        android:src="@drawable/logout"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/makeNewProductbtn" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

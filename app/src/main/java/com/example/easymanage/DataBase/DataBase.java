@@ -2,17 +2,22 @@ package com.example.easymanage.DataBase;
 
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+
 import com.example.easymanage.Order;
 import com.example.easymanage.Product;
 import com.example.easymanage.TAGS;
 import com.example.easymanage.User;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 
 public class DataBase {
     private static final DataBase ourInstance = new DataBase();
-    private static  FirebaseDatabase database = FirebaseDatabase.getInstance(); ;
+    private static  FirebaseDatabase database = FirebaseDatabase.getInstance();
     public static DataBase getInstance() {
         return ourInstance;
     }
@@ -48,14 +53,48 @@ public class DataBase {
     public static void insertProduct(Product product)
     {
         DatabaseReference myRef = database.getReference("products");
-        myRef.child(product.getUID()).setValue(product);
+        myRef.child(product.getuid()).setValue(product);
         myRef = database.getReference("supplier_products");
-        myRef.child(product.getSupplierID()).child(product.getUID()).setValue(product);
+        myRef.child(product.getSupplierID()).child(product.getuid()).setValue(product);
 
         Log.d(TAGS.INFO,"Inserting a new product to database  / Values : UID "
-                + product.getUID() +   " supploerID : "
+                + product.getuid() +   " supploerID : "
                 + product.getSupplierID() + " productName : "
                 + product.getProductName()   );
 
+    }
+    // --------------------------------- Deleting Data --------------------------------------------
+    public static void DeletingProduct(Product product){
+
+        DatabaseReference myRef = database.getReference("products").child(product.getuid());
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot _dataSnapshot : dataSnapshot.getChildren())
+                {
+                    _dataSnapshot.getRef().removeValue();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        myRef = database.getReference("supplier_products").child(product.getSupplierID()).child(product.getuid());
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot _dataSnapshot : dataSnapshot.getChildren())
+                {
+                    _dataSnapshot.getRef().removeValue();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 }

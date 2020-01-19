@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginFlow.MainActivity"
+    tools:context=".Supplier.ProductView"
     tools:ignore="VectorDrawableCompat">
 
     <androidx.cardview.widget.CardView
@@ -13,30 +13,38 @@
         android:layout_width="match_parent"
         android:layout_height="220dp"
         android:elevation="1dp" />
-
     <TextView
         android:id="@+id/tvDesc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
+        android:layout_marginLeft="70dp"
         android:layout_marginTop="40dp"
         android:elevation="5dp"
-        android:text="Welcome to EasyManage"
+        android:text="If it wasn't simple, it just wouldn't be."
         android:textColor="#20678B"
         android:textSize="17sp" />
-
     <TextView
-        android:id="@+id/tvLogin"
+        android:id="@+id/tvProduct"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvDesc"
         android:layout_alignLeft="@+id/tvDesc"
         android:elevation="5dp"
-        android:text="Login"
+        android:text="Order"
         android:textColor="@color/colorBlue"
         android:textSize="30sp"
         android:textStyle="bold"
-        android:transitionName="tvLogin" />
+        android:transitionName="tvLogin"
+        android:layout_marginLeft="75dp"
+        />
+    <ImageView
+        android:layout_width="259dp"
+        android:layout_height="250dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="75dp"
+        android:layout_marginBottom="330dp"
+        android:src="@drawable/chair" />
+
 
     <ImageView
         android:id="@+id/circle1"
@@ -85,7 +93,7 @@
 
         <RelativeLayout
             android:id="@+id/daniel"
-            android:layout_marginTop="150dp"
+            android:layout_marginTop="350dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -98,7 +106,7 @@
                 app:cardElevation="4dp">
 
                 <LinearLayout
-                    android:id="@+id/LoginBuilder"
+                    android:id="@+id/ProductBuilder"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
@@ -108,37 +116,55 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
-                        android:text="Username"
+                        android:text="Product Name"
                         android:textColor="@color/colorPurple"
                         android:textSize="14sp"
                         android:textStyle="bold" />
 
-                    <EditText
-                        android:id="@+id/EmailLogin"
-                        android:text="eliahu@gmaila.com"
+                    <TextView
+                        android:id="@+id/ProductNameOrderView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:textColor="@color/colorBlue"
+                        android:textSize="14sp"
                         android:inputType="textEmailAddress" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
-                        android:text="Password"
+                        android:text="Description"
                         android:textColor="@color/colorPurple"
                         android:textSize="14sp"
                         android:textStyle="bold" />
 
-                    <EditText
-                        android:id="@+id/PasswordLogin"
-                        android:text="123456"
+                    <TextView
+                        android:id="@+id/ProductDescriptionOrderView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
-                        android:inputType="textPassword" />
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:text="Order ID"
+                        android:textColor="@color/colorPurple"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/PriceOrderView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:textColor="@color/colorBlue"
+                        android:textSize="14sp"
+                        />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -157,8 +183,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/bg_ui"
-                    android:onClick="Login"
-                    android:text="Login"
+                    android:onClick="onClickDelete"
+                    android:text="Delete"
                     android:textAllCaps="false"
                     android:textColor="@color/colorWhite" />
             </RelativeLayout>
@@ -170,44 +196,8 @@
                 android:layout_alignRight="@+id/cv"
                 android:layout_marginTop="-20dp"
                 android:layout_marginRight="-20dp"
-                android:elevation="10dp">
+                android:elevation="10dp"/>
 
-                <ImageButton
-                    android:id="@+id/btRegister"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:background="@drawable/bg_ui"
-                    android:onClick="onRegisterClick"
-                    android:src="@drawable/ic_add" />
-            </RelativeLayout>
-
-            <TextView
-                android:id="@+id/tvForgot"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/cv"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="10dp"
-                android:elevation="5dp"
-                android:onClick="onforgotPasswordClick"
-                android:text="Forgot your password?"
-                android:textSize="14sp" />
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tvForgot"
-                android:layout_alignLeft="@+id/cv"
-                android:layout_alignRight="@+id/cv"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginRight="20dp"
-                android:background="@drawable/bt_uifb"
-                android:drawableLeft="@drawable/logofacebook"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:text="LOGIN WITH FACEBOOK"
-                android:textColor="@color/colorPurple" />
         </RelativeLayout>
     </ScrollView>
 

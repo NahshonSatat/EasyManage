@@ -25,7 +25,7 @@
         android:layout_width="409dp"
         android:layout_height="625dp"
         android:layout_marginBottom="7dp"
-        android:background="@color/colorAccent"
+
         app:layout_constraintBottom_toTopOf="@+id/navigation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

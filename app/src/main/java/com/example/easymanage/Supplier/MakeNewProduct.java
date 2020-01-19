@@ -27,6 +27,7 @@ public class MakeNewProduct extends AppCompatActivity {
 
     public void makeNewOrder(View view){
         makeNewOrder();
+        finish();
     }
     public void makeNewOrder(){
         DataBase.insertProduct(new Product(getUID(),supplierID(),productName(),description(),getPrice()));

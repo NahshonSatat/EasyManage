@@ -1,26 +1,27 @@
 package com.example.easymanage;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
-public class Product {
+public class Product implements Serializable {
 
-    private String UID ;
+    private String uid ;
     private String supplierID ;
     private String productName ;
     private String description ;
     private HashMap<String,String> info;
 
     public Product(){}
-    public Product(String UID ,String supplierID , String productName, String description , HashMap<String,String> info)
+    public Product(String uid ,String supplierID , String productName, String description , HashMap<String,String> info)
     {
-        this.UID = UID ;
+        this.uid = uid ;
         this.supplierID = supplierID ;
         this.productName = productName ;
         this.info = info ;
         this.description = description ;
     }
-    public String getUID() {
-        return UID;
+    public String getuid() {
+        return uid;
     }
 
 
