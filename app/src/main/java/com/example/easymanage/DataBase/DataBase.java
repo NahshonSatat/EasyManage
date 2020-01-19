@@ -97,4 +97,52 @@ public class DataBase {
             }
         });
     }
+
+    public static void DeletingOrder(Order order) {
+        DatabaseReference myRef = database.getReference("orders").child(order.getUID());
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot _dataSnapshot : dataSnapshot.getChildren())
+                {
+                    _dataSnapshot.getRef().removeValue();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        myRef = database.getReference("supplier_orders").child(order.getSupplierID()).child(order.getUID());
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot _dataSnapshot : dataSnapshot.getChildren())
+                {
+                    _dataSnapshot.getRef().removeValue();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        myRef = database.getReference("customer_orders").child(order.getUserID()).child(order.getUID());
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot _dataSnapshot : dataSnapshot.getChildren())
+                {
+                    _dataSnapshot.getRef().removeValue();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
 }

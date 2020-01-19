@@ -9,13 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.FullScreen">
-        <activity android:name=".Supplier.OrderView"></activity>
+        <activity android:name=".Supplier.OrderView" />
         <activity android:name=".Supplier.ProductView" />
         <activity android:name=".Supplier.MakeNewProduct" />
         <activity android:name=".Customer.HomePageCustomer" />
         <activity android:name=".Supplier.HomePage" />
         <activity android:name=".LoginFlow.forgotPassword" />
         <activity android:name=".LoginFlow.Register" />
+        <activity android:name=".Customer.ProductViewCustomer" />
+        <activity android:name=".Customer.OrderViewCustomer" />
         <activity android:name=".LoginFlow.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

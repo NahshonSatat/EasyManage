@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".Customer.HomePageCustomer">
 
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navigation"
         android:layout_width="match_parent"
@@ -16,20 +17,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/frameLayout"
+        app:layout_constraintTop_toBottomOf="@+id/frameLayoutCustomer"
         app:menu="@menu/bottom_navigation" />
 
     <FrameLayout
-        android:id="@+id/frameLayout"
+        android:id="@+id/frameLayoutCustomer"
         android:layout_width="409dp"
         android:layout_height="625dp"
         android:layout_marginBottom="7dp"
-        android:background="@color/colorAccent"
+
         app:layout_constraintBottom_toTopOf="@+id/navigation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
     </FrameLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

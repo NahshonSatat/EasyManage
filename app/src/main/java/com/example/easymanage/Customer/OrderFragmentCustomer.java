@@ -1,10 +1,13 @@
 package com.example.easymanage.Customer;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -14,8 +17,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.easymanage.LoginFlow.MainActivity;
 import com.example.easymanage.Order;
+import com.example.easymanage.Product;
 import com.example.easymanage.R;
+import com.example.easymanage.Supplier.OrderView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -25,27 +31,47 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OrderFragment extends Fragment {
+public class OrderFragmentCustomer extends Fragment {
 
-    ListView listViewOrders;
-    DatabaseReference DataRefOrders;
-    List<Order> orders  = new ArrayList<>();
+    private ListView listViewOrders;
+    private DatabaseReference DataRefOrders;
+    private List<Order> orders  = new ArrayList<>();
+    Context mActivity  = getActivity();
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_order,container,false);
-        listViewOrders = (ListView) view.findViewById(R.id.OrdersListView);
-        OrderList adapter = new OrderList(getActivity(),orders);
+        View view = inflater.inflate(R.layout.fragment_order_customer,container,false);
+        listViewOrders = (ListView) view.findViewById(R.id.OrdersListViewCustomer);
+        OrderList adapter = new OrderList(mActivity,orders);
         listViewOrders.setAdapter(adapter);
-        DataRefOrders = FirebaseDatabase.getInstance().getReference("customer_orders");
+        DataRefOrders = FirebaseDatabase.getInstance().getReference("customer_orders").child(MainActivity.user.getUid());
+        listViewOrders.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Order order = orders.get(position);
+                Intent intent = new Intent(mActivity, OrderViewCustomer.class);
+                intent.putExtra("Order", order);
+                startActivity(intent);
+            }
+        });
         return view ;
 
     }
 
     @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        if (context instanceof Activity){
+            mActivity =(Activity) context;
+        }
+    }
+
+    @Override
     public void onStart() {
         super.onStart();
+        DataRefOrders = FirebaseDatabase.getInstance().getReference("customer_orders").child(MainActivity.user.getUid());
         DataRefOrders.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -56,7 +82,7 @@ public class OrderFragment extends Fragment {
                     Order order = orderSnapShot.getValue(Order.class);
                     orders.add(order);
                 }
-                OrderList adapter = new OrderList(getActivity(),orders);
+                OrderList adapter = new OrderList(mActivity,orders);
                 listViewOrders.setAdapter(adapter);
             }
 
@@ -90,16 +116,28 @@ public class OrderFragment extends Fragment {
             View listViewItem = layoutInflater.inflate(R.layout.order_list_item,parent,false);
 
             TextView UID =(TextView) listViewItem.findViewById(R.id.order_uid);
-            TextView ProductID =(TextView) listViewItem.findViewById(R.id.order_product_name);
+            final TextView ProductID =(TextView) listViewItem.findViewById(R.id.order_product_name);
             ImageView ProductImage =(ImageView) listViewItem.findViewById(R.id.order_product_image);
 
 
             Order order = OrdersList.get(position);
-
             UID.setText(order.getUID());
-            ProductID.setText(order.getProductID());
-            ProductImage.setImageResource(R.drawable.chair);
 
+
+            ProductImage.setImageResource(R.drawable.chair);
+            DataRefOrders = FirebaseDatabase.getInstance().getReference("products").child(order.getProductID());
+            DataRefOrders.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    Product product = dataSnapshot.getValue(Product.class);
+                    ProductID.setText( product.getProductName());
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
             return listViewItem;
         }
 

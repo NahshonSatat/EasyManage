@@ -1,20 +1,16 @@
 package com.example.easymanage.Customer;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
-
-import com.example.easymanage.R;
+import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import android.os.Bundle;
-import android.view.MenuItem;
-import com.example.easymanage.Customer.HomeFragemnt;
-import com.example.easymanage.Customer.OrderFragment;
-import com.example.easymanage.Customer.ProductFragment;
+import com.example.easymanage.R;
+import com.example.easymanage.Supplier.HomeFragemnt;
+import com.example.easymanage.Supplier.OrderFragment;
+import com.example.easymanage.Supplier.ProductFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class HomePageCustomer extends AppCompatActivity {
@@ -23,11 +19,9 @@ public class HomePageCustomer extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page_customer);
-
         BottomNavigationView bottomNav = findViewById(R.id.navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
-        getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout,new HomeFragemnt()).commit();
-
+        getSupportFragmentManager().beginTransaction().replace(R.id.frameLayoutCustomer,new HomeFragemntCustomer()).commit();
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -36,17 +30,17 @@ public class HomePageCustomer extends AppCompatActivity {
             Fragment selectedFragment = null ;
             switch (menuItem.getItemId()) {
                 case R.id.navigation_home:
-                    selectedFragment = new HomeFragemnt();
+                    selectedFragment = new HomeFragemntCustomer();
                     break;
                 case R.id.navigation_orders:
-                    selectedFragment = new OrderFragment();
+                    selectedFragment = new OrderFragmentCustomer();
                     break;
                 case R.id.navigation_products:
-                    selectedFragment = new ProductFragment();
+                    selectedFragment = new ProductFragmentCustomer();
                     break;
             }
 
-            getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout,selectedFragment).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.frameLayoutCustomer,selectedFragment).commit();
             return true;
         }
     };
