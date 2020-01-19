@@ -1,10 +1,12 @@
 package com.example.easymanage.Customer;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import android.content.DialogInterface;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.easymanage.DataBase.DataBase;
@@ -18,7 +20,7 @@ import java.util.UUID;
 
 
 public class ProductViewCustomer extends AppCompatActivity {
-
+    public AlertDialog dialog;
     Product _product ;
 
     @Override
@@ -46,11 +48,21 @@ public class ProductViewCustomer extends AppCompatActivity {
 
     public void onClickCheckOut(View view){
         //String UID,String userID , String supplierID ,String productID,HashMap<String,String> info
-        HashMap<String,String> info = new HashMap<>();
-        info.put("from","israel");
-        info.put("to","israel");
-        DataBase.insertOrder(new Order(UUID.randomUUID().toString(), MainActivity.user.getUid(),_product.getSupplierID(),_product.getuid(),info));
-        finish();
+        dialog = new AlertDialog.Builder(this)
+                .setTitle("orders")
+                .setMessage("are you Sure you want to make this order ?")
+                .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        HashMap<String,String> info = new HashMap<>();
+                        info.put("from","israel");
+                        info.put("to","israel");
+                        DataBase.insertOrder(new Order(UUID.randomUUID().toString(), MainActivity.user.getUid(),_product.getSupplierID(),_product.getuid(),info));
+                        finish();
+                    }
+                })
+                .setNegativeButton("cancel", null)
+                .show();
     }
 
 }

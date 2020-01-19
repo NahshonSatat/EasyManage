@@ -15,9 +15,11 @@ import com.example.easymanage.R;
 
 import java.util.HashMap;
 import java.util.UUID;
-
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 public class MakeNewProduct extends AppCompatActivity {
 
+    public  AlertDialog dialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,9 +28,21 @@ public class MakeNewProduct extends AppCompatActivity {
 
 
     public void makeNewOrder(View view){
-        makeNewOrder();
-        finish();
+        dialog = new AlertDialog.Builder(MakeNewProduct.this)
+                .setTitle("products")
+                .setMessage("are you Sure you want to make this product ?")
+                .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        makeNewOrder();
+                        finish();
+                    }
+                })
+                .setNegativeButton("cancel", null)
+                .show();
+
     }
+
     public void makeNewOrder(){
         DataBase.insertProduct(new Product(getUID(),supplierID(),productName(),description(),getPrice()));
     }
