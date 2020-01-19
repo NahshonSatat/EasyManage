@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.easymanage.LoginFlow.MainActivity;
+import com.example.easymanage.Phone;
 import com.example.easymanage.R;
 import com.example.easymanage.Supplier.MakeNewProduct;
 
@@ -34,6 +35,14 @@ public class HomeFragemntCustomer extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), MainActivity.class);
+                startActivity(intent);
+            }
+        });
+        ImageView phone = (ImageView) view.findViewById(R.id.PhoneCustomer);
+        phone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), Phone.class);
                 startActivity(intent);
             }
         });

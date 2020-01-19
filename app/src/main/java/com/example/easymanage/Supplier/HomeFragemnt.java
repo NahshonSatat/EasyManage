@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.easymanage.LoginFlow.MainActivity;
+import com.example.easymanage.Phone;
 import com.example.easymanage.R;
 
 public class HomeFragemnt extends Fragment {
@@ -37,6 +38,15 @@ public class HomeFragemnt extends Fragment {
                 startActivity(intent);
             }
         });
+        ImageView phone = (ImageView) view.findViewById(R.id.PhoneSupplier);
+        phone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), Phone.class);
+                startActivity(intent);
+            }
+        });
+
         return view;
     }
 
